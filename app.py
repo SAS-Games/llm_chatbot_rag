@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 from llm.llm_factory import get_llm
+from rag.rag_service import RAGService
 
 st.set_page_config(
     page_title="Hacky Chatbot",
@@ -10,6 +11,7 @@ st.set_page_config(
 
 st.title("🤖 My Chatbot")
 llm = get_llm()
+rag = RAGService("data/Optimize_your_console_and_PC_game_performance_Unity_2022_LTS.pdf")
 # Sidebar
 with st.sidebar:
     st.header("Options")
@@ -42,8 +44,8 @@ if prompt:
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    response = llm.generate_response(st.session_state.messages)
-
+    response = rag.ask(prompt)
+    
     # Display typing effect
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
