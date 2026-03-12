@@ -110,7 +110,7 @@ else:
 # Load RAG
 # ----------------------------
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def load_rag(source, source_hash):
     return RAGService(source, source_hash)
 
@@ -153,7 +153,8 @@ if prompt:
 
     with st.chat_message("assistant", avatar="assets/assistant.png"):
         with st.spinner("Thinking..."):
-            response = rag.ask(prompt)
+            response, sources = rag.ask(prompt)
+
         placeholder = st.empty()
         full_response = ""
 
@@ -165,6 +166,14 @@ if prompt:
             placeholder.markdown(full_response + "▌")
 
         placeholder.markdown(full_response)
+
+    if sources:
+
+        st.markdown("---")
+        st.markdown("**📚 Sources**")
+
+        for src in set(sources):
+            st.markdown(f"- `{src}`")
 
     st.session_state.messages.append({
         "role": "assistant",

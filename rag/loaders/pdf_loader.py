@@ -8,12 +8,18 @@ class PDFLoader(BaseLoader):
 
         reader = PdfReader(path)
 
-        text = ""
+        documents = []
 
-        for page in reader.pages:
-            page_text = page.extract_text()
+        for page_number, page in enumerate(reader.pages, start=1):
 
-            if page_text:
-                text += page_text + "\n"
+            text = page.extract_text()
 
-        return [text]
+            if text:
+
+                documents.append({
+                    "text": text,
+                    "source": path,
+                    "page": page_number
+                })
+
+        return documents

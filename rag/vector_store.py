@@ -15,10 +15,10 @@ class VectorStore:
     def add_documents(self, embeddings, docs):
 
         vectors = np.array(embeddings).astype("float32")
-
         self.index.add(vectors)
 
-        self.documents.extend(docs)
+        for doc in docs:
+            self.documents.append(doc)
 
 
     def search(self, query_embedding, k=4):

@@ -42,19 +42,51 @@ class RAGService:
 
         for doc in documents:
 
-            if hasattr(doc, "page_content"):
+            if isinstance(doc, dict):
+
+                text = doc.get("text", "")
+                source = doc.get("source", source_path)
+                page = doc.get("page", None)
+
+            elif hasattr(doc, "page_content"):
+
                 text = doc.page_content
+                source = doc.metadata.get("source", source_path)
+                page = doc.metadata.get("page", None)
+
             else:
-                text = doc
 
-            chunks.extend(split_text(text))
+                text = str(doc)
+                source = source_path
+                page = None
 
+        # clean text
+            if not text:
+                continue
+
+            text = text.strip()
+
+            if len(text) < 10:
+                continue
+
+            for chunk in split_text(text):
+
+                if chunk.strip():
+
+                    chunks.append({
+                    "text": chunk,
+                    "source": source,
+                    "page": page
+                })
+
+        print("Documents loaded:", len(documents))
         print("Chunks created:", len(chunks))
-
+        
         if not chunks:
             raise ValueError("No chunks generated from documents")
 
-        embeddings = self.embedding_model.embed_documents(chunks)
+        texts = [c["text"] for c in chunks]
+        embeddings = self.embedding_model.embed_documents(texts)
 
         dimension = len(embeddings[0])
 
@@ -71,29 +103,40 @@ class RAGService:
 
         query_embedding = self.embedding_model.embed_query(question)
 
-        docs = self.vector_store.search(query_embedding, k=3)
+        docs = self.vector_store.search(query_embedding, k=8)
 
-        context = "\n".join(docs)
+        context = "\n".join([d["text"] for d in docs[:4]])
+
+        sources = []
+
+        for d in docs[:4]:
+
+            src = d["source"]
+            src = os.path.basename(src)
+            if d["page"]:
+                src = f"{src} (page {d['page']})"
+
+            sources.append(src)
 
         prompt = f"""
-Context:
-{context}
+    Context:
+    {context}
 
-Question:
-{question}
-"""
+    Question:
+    {question}
+    """
 
         messages = [
-            {
-                "role": "system",
-                "content": "Answer questions using ONLY the provided context. If the answer is not in the context, say you don't know."
-            },
-            {
-                "role": "user",
-                "content": prompt
-            }
+        {
+            "role": "system",
+            "content": "Answer questions using ONLY the provided context. If the answer is not in the context, say you don't know."
+        },
+        {
+            "role": "user",
+            "content": prompt
+        }
         ]
 
         response = self.llm.generate_response(messages)
 
-        return response
+        return response, sources
