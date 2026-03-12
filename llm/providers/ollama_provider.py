@@ -1,17 +1,20 @@
 import ollama
 from llm.base_llm import BaseLLM
-from config.settings import LLM_MODEL, LLM_TEMPERATURE;
+from config.settings import LLM_MODEL, LLM_TEMPERATURE
 
 
 class OllamaProvider(BaseLLM):
 
+    def __init__(self):
+        self.client = ollama.Client()
+
     def generate_response(self, messages):
 
-        response = ollama.chat(
+        response = self.client.chat(
             model=LLM_MODEL,
             messages=messages,
             options={
-                "temperature" : LLM_TEMPERATURE
+                "temperature": LLM_TEMPERATURE
             }
         )
 

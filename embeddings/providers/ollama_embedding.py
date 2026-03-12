@@ -10,25 +10,19 @@ class OllamaEmbedding(BaseEmbedding):
         if not texts:
             return []
 
-        embeddings = []
+        response = ollama.embed(
+            model=EMBEDDING_MODEL,
+            input=texts
+        )
 
-        for text in texts:
-
-            response = ollama.embeddings(
-                model=EMBEDDING_MODEL,
-                prompt=text
-            )
-
-            embeddings.append(response["embedding"])
-
-        return embeddings
+        return response["embeddings"]
 
 
     def embed_query(self, text):
 
-        response = ollama.embeddings(
+        response = ollama.embed(
             model=EMBEDDING_MODEL,
-            prompt=text
+            input=[text]
         )
 
-        return response["embedding"]
+        return response["embeddings"][0]

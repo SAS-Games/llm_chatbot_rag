@@ -1,12 +1,15 @@
 from openai import OpenAI
 from embeddings.base_embedding import BaseEmbedding
-from config.settings import EMBEDDING_MODEL, OPENAI_API_KEY
+from config.settings import EMBEDDING_MODEL, OPENAI_API_KEY, LLM_BASE_URL
 
 
 class OpenAIEmbedding(BaseEmbedding):
 
     def __init__(self):
-        self.client = OpenAI(api_key=OPENAI_API_KEY)
+        self.client = OpenAI(
+            api_key=OPENAI_API_KEY,
+            base_url=LLM_BASE_URL
+        )
 
     def embed_documents(self, texts):
 
