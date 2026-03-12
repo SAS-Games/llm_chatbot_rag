@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="save" content="history" />
+    <title>ListBase(T) Methods</title>
+    <link rel="stylesheet" type="text/css" href="../styles/lightweight.css" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <link rel="stylesheet" type="text/css" href="../styles/lw-code.css" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <script type="text/javascript" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" src="../scripts/languageSelector.js"> </script>
+    <meta name="container" content="Wintellect.PowerCollections" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <meta name="file" content="Methods.T-Wintellect.PowerCollections.ListBase-1" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <meta name="guid" content="Methods.T-Wintellect.PowerCollections.ListBase-1" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <xml xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+      <MSHelp:Attr Name="AssetID" Value="Methods.T:Wintellect.PowerCollections.ListBase`1" />
+      <MSHelp:TOCTitle Title="ListBase(T) Methods" />
+      <MSHelp:RLTitle Title="ListBase(T) Methods (Wintellect.PowerCollections)" />
+      <MSHelp:Keyword Index="A" Term="Methods.T:Wintellect.PowerCollections.ListBase`1" />
+      <MSHelp:Keyword Index="A" Term="frlrfWintellectPowerCollectionsListBase1MethodsTopic" />
+      <MSHelp:Keyword Index="K" Term="ListBase%3CT%3E class, methods" />
+      <MSHelp:Keyword Index="K" Term="ListBase(Of T) class, methods" />
+      <MSHelp:Attr Name="DevLang" Value="CSharp" />
+      <MSHelp:Attr Name="DevLang" Value="VB" />
+      <MSHelp:Attr Name="Locale" Value="en-us" />
+      <MSHelp:Attr Name="TopicType" Value="kbSyntax" />
+      <MSHelp:Attr Name="TopicType" Value="apiref" />
+      <MSHelp:Attr Name="AssemblyVersion" Value="" />
+    </xml>
+    <link type="text/css" rel="stylesheet" href="../styles/highlight.css" />
+  </head>
+  <body>
+    <div class="header" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+      <table class="headerBar cl_lightweight_topnav_slice" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="leftSection cl_lightweight_header_leftSection_wave leftSectionImageClusterOverride" />
+            <td class="rightSection cl_lightweight_header_rightSection_wave rightSectionImageClusterOverride">
+              <div class="tabContainer">GhostDoc Pro Sample Help File</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="contentPlaceHolder" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+      <div class="content">
+        <div class="topicContainer">
+          <div class="topic">
+            <p class="majorTitle" />
+            <h1 class="title">ListBase<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><span class="typeparameter">T</span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span> Methods</h1>
+            <div id="mainSection">
+              <div id="mainBody">
+                <p>The <a href="T-Wintellect.PowerCollections.ListBase-1.htm">ListBase<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span></a> type exposes the following members.</p>
+                <div class="LW_CollapsibleArea_Container">
+                  <div class="LW_CollapsibleArea_TitleDiv">
+                    <h2 class="LW_CollapsibleArea_Title">Methods</h2>
+                    <div class="LW_CollapsibleArea_HrDiv">
+                      <hr class="LW_CollapsibleArea_Hr" />
+                    </div>
+                  </div>
+                  <a id="methodTableSection">
+                    <!---->
+                  </a>
+                  <table class="members">
+                    <tr>
+                      <th class="iconColumn">
+               
+            </th>
+                      <th class="nameColumn">Name</th>
+                      <th class="descriptionColumn">Description</th>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.Add.htm">Add</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Adds an item to the end of the list. This method is equivalent to calling:
+  <span id="cbc_1" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">Insert(Count, item)</pre></div></span></div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.AsReadOnly.htm">AsReadOnly</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Provides a read-only view of this list. The returned IList&lt;T&gt; provides
+   a view of the list that prevents modifications to the list. Use the method to provide
+   access to the list without allowing changes. Since the returned object is just a view,
+   changes to the list will be reflected in the view.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.Clear.htm">Clear</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   This method must be overridden by the derived class to empty the list
+   of all items.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.Contains.htm">Contains</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Determines if the list contains any item that compares equal to <span class="parameterItalic">item</span>.
+   The implementation simply checks whether IndexOf(item) returns a non-negative value.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.CopyTo.htm">CopyTo(<span class="languageSpecificText"><span class="cpp">array&lt;</span></span>T<span class="languageSpecificText"><span class="cpp">&gt;</span><span class="cs">[]</span><span class="vb">()</span><span class="nu">[]</span><span class="fs">[]</span></span>)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Copies all the items in the list, in order, to <span class="parameterItalic">array</span>,
+   starting at index 0.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.CopyTo_1.htm">CopyTo(<span class="languageSpecificText"><span class="cpp">array&lt;</span></span>T<span class="languageSpecificText"><span class="cpp">&gt;</span><span class="cs">[]</span><span class="vb">()</span><span class="nu">[]</span><span class="fs">[]</span></span>, Int32)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Copies all the items in the list, in order, to <span class="parameterItalic">array</span>,
+   starting at <span class="parameterItalic">arrayIndex</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.CopyTo_2.htm">CopyTo(Int32, <span class="languageSpecificText"><span class="cpp">array&lt;</span></span>T<span class="languageSpecificText"><span class="cpp">&gt;</span><span class="cs">[]</span><span class="vb">()</span><span class="nu">[]</span><span class="fs">[]</span></span>, Int32, Int32)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Copies a range of elements from the list to <span class="parameterItalic">array</span>,
+   starting at <span class="parameterItalic">arrayIndex</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.Find.htm">Find</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the first item in the list that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, than
+   the default value for T (null or all-zero) is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.FindIndex.htm">FindIndex(Predicate<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="fs">&lt;'</span><span class="nu">(</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="fs">&gt;</span><span class="nu">)</span></span>)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the first item in the list that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, -1 is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.FindIndex_1.htm">FindIndex(Int32, Predicate<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="fs">&lt;'</span><span class="nu">(</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="fs">&gt;</span><span class="nu">)</span></span>)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the first item, in the range of items extending from <span class="parameterItalic">index</span> to the end, that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, -1 is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.FindIndex_2.htm">FindIndex(Int32, Int32, Predicate<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="fs">&lt;'</span><span class="nu">(</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="fs">&gt;</span><span class="nu">)</span></span>)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the first item, in the range of <span class="parameterItalic">count</span> items starting from <span class="parameterItalic">index</span>, that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, -1 is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.FindLast.htm">FindLast</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the last item in the list that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, than
+   the default value for T (null or all-zero) is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.FindLastIndex.htm">FindLastIndex(Predicate<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="fs">&lt;'</span><span class="nu">(</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="fs">&gt;</span><span class="nu">)</span></span>)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the last item in the list that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, -1 is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.FindLastIndex_1.htm">FindLastIndex(Int32, Predicate<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="fs">&lt;'</span><span class="nu">(</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="fs">&gt;</span><span class="nu">)</span></span>)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the last item, in the range of items extending from the beginning
+   of the list to <span class="parameterItalic">index</span>, that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, -1 is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.FindLastIndex_2.htm">FindLastIndex(Int32, Int32, Predicate<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="fs">&lt;'</span><span class="nu">(</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="fs">&gt;</span><span class="nu">)</span></span>)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the last item, in the range of <span class="parameterItalic">count</span> items ending at <span class="parameterItalic">index</span>, that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>. If no item matches the condition, -1 is returned.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.GetEnumerator.htm">GetEnumerator</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Enumerates all of the items in the list, in order. The item at index 0
+   is enumerated first, then the item at index 1, and so on.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.IndexOf.htm">IndexOf(T)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the first item in the list that is equal to <span class="parameterItalic">item</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.IndexOf_1.htm">IndexOf(T, Int32)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the first item, in the range of items extending from <span class="parameterItalic">index</span> to the end,
+   that is equal to <span class="parameterItalic">item</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.IndexOf_2.htm">IndexOf(T, Int32, Int32)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the first item, in the range of <span class="parameterItalic">count</span> items starting from <span class="parameterItalic">index</span>,
+   that is equal to <span class="parameterItalic">item</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.Insert.htm">Insert</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   This method must be overridden by the derived class to insert a new
+   item at the given index.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.LastIndexOf.htm">LastIndexOf(T)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the last item in the list that is equal to <span class="parameterItalic">item</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.LastIndexOf_1.htm">LastIndexOf(T, Int32)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the last item, in the range of items extending from the beginning
+   of the list to <span class="parameterItalic">index</span>, that is equal to <span class="parameterItalic">item</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.LastIndexOf_2.htm">LastIndexOf(T, Int32, Int32)</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the index of the last item, in the range of <span class="parameterItalic">count</span> items ending at <span class="parameterItalic">index</span>,
+   that is equal to <span class="parameterItalic">item</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.Range.htm">Range</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Returns a view onto a sub-range of this list. Items are not copied; the
+   returned IList&lt;T&gt; is simply a different view onto the same underlying items. Changes to this list
+   are reflected in the view, and vice versa. Insertions and deletions in the view change the size of the
+   view, but insertions and deletions in the underlying list do not.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.Remove.htm">Remove</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Searches the list for the first item that compares equal to <span class="parameterItalic">item</span>.
+   If one is found, it is removed. Otherwise, the list is unchanged.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.RemoveAt.htm">RemoveAt</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   This method must be overridden by the derived class to remove the
+   item at the given index.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.TryFind.htm">TryFind</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the first item in the list that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>.
+   </div>
+                      </td>
+                    </tr>
+                    <tr data="public;declared;notNetfw;">
+                      <td>
+                        <img src="../icons/pubmethod.gif" alt="Public method" title="Public method" />
+                      </td>
+                      <td>
+                        <a href="M-Wintellect.PowerCollections.ListBase-1.TryFindLast.htm">TryFindLast</a>
+                      </td>
+                      <td>
+                        <div class="summary">
+   Finds the last item in the list that satisfies the condition
+   defined by <span class="parameterItalic">predicate</span>.
+   </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="LW_CollapsibleArea_Container">
+                  <div class="LW_CollapsibleArea_TitleDiv">
+                    <h2 class="LW_CollapsibleArea_Title">See Also</h2>
+                    <div class="LW_CollapsibleArea_HrDiv">
+                      <hr class="LW_CollapsibleArea_Hr" />
+                    </div>
+                  </div>
+                  <a id="seeAlsoSection">
+                    <!---->
+                  </a>
+                  <div class="seeAlsoStyle">
+                    <a href="T-Wintellect.PowerCollections.ListBase-1.htm">ListBase<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span>T<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span> Class</a>
+                  </div>
+                  <div class="seeAlsoStyle">
+                    <a href="N-Wintellect.PowerCollections.htm">Wintellect.PowerCollections Namespace</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div id="footer" class="footerContainer">
+          <div class="footerLogoContainer">
+            <div style="margin-top:5px">
+              <span class="customCopyrightFooter" />
+            </div>
+            <div style="margin-top:5px" class="copyrightFooter">Help File generated with GhostDoc</div>
+            <div> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

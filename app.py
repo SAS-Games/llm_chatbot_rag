@@ -11,7 +11,11 @@ st.set_page_config(
 
 st.title("🤖 My Chatbot")
 llm = get_llm()
-rag = RAGService("data/Optimize_your_console_and_PC_game_performance_Unity_2022_LTS.pdf")
+@st.cache_resource
+def get_rag():
+    return RAGService("data/Optimize_your_console_and_PC_game_performance_Unity_2022_LTS.pdf")
+
+rag = get_rag()
 # Sidebar
 with st.sidebar:
     st.header("Options")

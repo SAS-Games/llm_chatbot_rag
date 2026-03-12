@@ -1,5 +1,6 @@
 import faiss
 import numpy as np
+import pickle
 
 
 class VectorStore:
@@ -7,10 +8,9 @@ class VectorStore:
     def __init__(self, dimension):
 
         self.dimension = dimension
-
         self.index = faiss.IndexFlatL2(dimension)
-
         self.documents = []
+
 
     def add_documents(self, embeddings, docs):
 
@@ -19,6 +19,7 @@ class VectorStore:
         self.index.add(vectors)
 
         self.documents.extend(docs)
+
 
     def search(self, query_embedding, k=4):
 
@@ -29,6 +30,24 @@ class VectorStore:
         results = []
 
         for idx in indices[0]:
-            results.append(self.documents[idx])
+
+            if idx < len(self.documents):
+                results.append(self.documents[idx])
 
         return results
+
+
+    def save(self, index_path, docs_path):
+
+        faiss.write_index(self.index, index_path)
+
+        with open(docs_path, "wb") as f:
+            pickle.dump(self.documents, f)
+
+
+    def load(self, index_path, docs_path):
+
+        self.index = faiss.read_index(index_path)
+
+        with open(docs_path, "rb") as f:
+            self.documents = pickle.load(f)

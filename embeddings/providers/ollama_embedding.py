@@ -7,6 +7,9 @@ class OllamaEmbedding(BaseEmbedding):
 
     def embed_documents(self, texts):
 
+        if not texts:
+            return []
+
         embeddings = []
 
         for text in texts:

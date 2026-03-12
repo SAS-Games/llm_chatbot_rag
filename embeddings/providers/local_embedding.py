@@ -9,7 +9,20 @@ class LocalEmbedding(BaseEmbedding):
         self.model = SentenceTransformer(EMBEDDING_MODEL)
 
     def embed_documents(self, texts):
-        return self.model.encode(texts)
+
+        if not texts:
+            return []
+
+        return self.model.encode(
+            texts,
+            batch_size=32,
+            show_progress_bar=True,
+            convert_to_numpy=True
+        )
 
     def embed_query(self, text):
-        return self.model.encode([text])[0]
+
+        return self.model.encode(
+            [text],
+            convert_to_numpy=True
+        )[0]
