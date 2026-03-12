@@ -8,57 +8,63 @@ from embeddings.embedding_factory import get_embedding_model
 from llm.llm_factory import get_llm
 
 
-INDEX_FILE = "vector_index.faiss"
-DOC_FILE = "vector_docs.pkl"
-
-
 class RAGService:
 
-    def __init__(self, source_path):
+    def __init__(self, source_path, source_hash):
 
         self.embedding_model = get_embedding_model()
         self.llm = get_llm()
 
-        # If vector index already exists, load it
-        if os.path.exists(INDEX_FILE) and os.path.exists(DOC_FILE):
+        os.makedirs("indexes", exist_ok=True)
 
-            print("Loading existing vector index...")
+        index_file = f"indexes/{source_hash}.faiss"
+        doc_file = f"indexes/{source_hash}.pkl"
 
-            # dimension must match embedding model
+        # Load existing index
+        if os.path.exists(index_file) and os.path.exists(doc_file):
+
+            print("Loading existing vector index")
+
             self.vector_store = VectorStore(384)
-            self.vector_store.load(INDEX_FILE, DOC_FILE)
+            self.vector_store.load(index_file, doc_file)
 
-        else:
+            return
 
-            print("Building vector index...")
+        print("Building vector index")
 
-            loader = get_loader(source_path)
+        loader = get_loader(source_path)
 
-            documents = loader.load(source_path)
-            print("Documents loaded:", len(documents))
+        documents = loader.load(source_path)
 
-            chunks = []
+        print("Documents loaded:", len(documents))
 
-            for doc in documents:
-                chunks.extend(split_text(doc))
+        chunks = []
 
-            print("Chunks created:", len(chunks))
+        for doc in documents:
 
-            if not chunks:
-                raise ValueError("No chunks generated from documents.")
+            if hasattr(doc, "page_content"):
+                text = doc.page_content
+            else:
+                text = doc
 
-            embeddings = self.embedding_model.embed_documents(chunks)
+            chunks.extend(split_text(text))
 
-            dimension = len(embeddings[0])
+        print("Chunks created:", len(chunks))
 
-            self.vector_store = VectorStore(dimension)
+        if not chunks:
+            raise ValueError("No chunks generated from documents")
 
-            self.vector_store.add_documents(embeddings, chunks)
+        embeddings = self.embedding_model.embed_documents(chunks)
 
-            # Save index for future runs
-            self.vector_store.save(INDEX_FILE, DOC_FILE)
+        dimension = len(embeddings[0])
 
-            print("Vector index saved.")
+        self.vector_store = VectorStore(dimension)
+
+        self.vector_store.add_documents(embeddings, chunks)
+
+        self.vector_store.save(index_file, doc_file)
+
+        print("Vector index saved")
 
 
     def ask(self, question):

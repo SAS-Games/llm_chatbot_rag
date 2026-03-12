@@ -1,6 +1,8 @@
 import streamlit as st
 import time
-from llm.llm_factory import get_llm
+import os
+import hashlib
+
 from rag.rag_service import RAGService
 
 st.set_page_config(
@@ -10,59 +12,160 @@ st.set_page_config(
 )
 
 st.title("🤖 My Chatbot")
-llm = get_llm()
-@st.cache_resource
-def get_rag():
-    return RAGService("data/Optimize_your_console_and_PC_game_performance_Unity_2022_LTS.pdf")
 
-rag = get_rag()
+# ----------------------------
+# Session State
+# ----------------------------
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+
+# ----------------------------
 # Sidebar
+# ----------------------------
+
 with st.sidebar:
-    st.header("Options")
+
+    st.header("Knowledge Source")
+
+    uploaded_pdf = st.file_uploader(
+        "Browse PDF",
+        type=["pdf"]
+    )
+
+    folder_path = st.text_input("Or enter folder path)",
+        placeholder="example: data/docs/"
+    )
 
     if st.button("Clear Chat"):
         st.session_state.messages = []
         st.rerun()
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
 
-# Show previous messages
+# ----------------------------
+# Determine Active Source
+# ----------------------------
+
+active_source = None
+source_hash = None
+
+# ---------------- PDF ----------------
+
+if uploaded_pdf:
+
+    os.makedirs("uploads", exist_ok=True)
+
+    file_bytes = uploaded_pdf.getbuffer()
+
+    source_hash = hashlib.md5(file_bytes).hexdigest()
+
+    active_source = f"uploads/{source_hash}.pdf"
+
+    if not os.path.exists(active_source):
+
+        with open(active_source, "wb") as f:
+            f.write(file_bytes)
+
+# ---------------- Folder (HTML docs) ----------------
+
+elif folder_path:
+
+    if os.path.exists(folder_path):
+
+        active_source = folder_path
+
+        hash_builder = hashlib.md5()
+
+        html_count = 0
+
+        for root, _, files in os.walk(folder_path):
+
+            for file in files:
+
+                if file.endswith((".html", ".htm")):
+
+                    html_count += 1
+
+                    full_path = os.path.join(root, file)
+
+                    hash_builder.update(full_path.encode())
+
+        source_hash = hash_builder.hexdigest()
+
+        st.sidebar.caption(f"HTML files detected: {html_count}")
+
+    else:
+        st.sidebar.error("Folder does not exist")
+
+# ---------------- Default ----------------
+
+else:
+
+    active_source = "data/chm_doc/PowerCollections"
+    source_hash = "default"
+
+
+# ----------------------------
+# Load RAG
+# ----------------------------
+
+@st.cache_resource
+def load_rag(source, source_hash):
+    return RAGService(source, source_hash)
+
+
+rag = load_rag(active_source, source_hash)
+
+# ----------------------------
+# Display Knowledge Source
+# ----------------------------
+
+st.caption(f"📚 Knowledge Source: `{active_source}`")
+
+
+# ----------------------------
+# Chat History
+# ----------------------------
+
 for message in st.session_state.messages:
+
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Chat input
+
+# ----------------------------
+# Chat Input
+# ----------------------------
+
 prompt = st.chat_input("Ask something...")
 
 if prompt:
 
-    # Save user message
     st.session_state.messages.append({
         "role": "user",
         "content": prompt
     })
 
-    # Display user message
     with st.chat_message("user"):
         st.markdown(prompt)
 
     response = rag.ask(prompt)
-    
-    # Display typing effect
+
     with st.chat_message("assistant"):
-        message_placeholder = st.empty()
+
+        placeholder = st.empty()
         full_response = ""
 
         for word in response.split():
+
             full_response += word + " "
-            time.sleep(0.05)
-            message_placeholder.markdown(full_response + "▌")
+            time.sleep(0.04)
 
-        message_placeholder.markdown(full_response)
+            placeholder.markdown(full_response + "▌")
 
-    # Save assistant response
+        placeholder.markdown(full_response)
+
     st.session_state.messages.append({
         "role": "assistant",
         "content": full_response
