@@ -114,8 +114,8 @@ else:
 def load_rag(source, source_hash):
     return RAGService(source, source_hash)
 
-
-rag = load_rag(active_source, source_hash)
+with st.spinner(f"📚 Indexing knowledge source: {active_source}"):
+    rag = load_rag(active_source, source_hash)
 
 # ----------------------------
 # Display Knowledge Source
@@ -129,8 +129,9 @@ st.caption(f"📚 Knowledge Source: `{active_source}`")
 # ----------------------------
 
 for message in st.session_state.messages:
+    avatar = "assets/user.png" if message["role"] == "user" else "assets/assistant.png"
 
-    with st.chat_message(message["role"]):
+    with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
 
 
@@ -147,13 +148,12 @@ if prompt:
         "content": prompt
     })
 
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="assets/user.png"):
         st.markdown(prompt)
 
-    response = rag.ask(prompt)
-
-    with st.chat_message("assistant"):
-
+    with st.chat_message("assistant", avatar="assets/assistant.png"):
+        with st.spinner("Thinking..."):
+            response = rag.ask(prompt)
         placeholder = st.empty()
         full_response = ""
 
