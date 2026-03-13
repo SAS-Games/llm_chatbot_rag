@@ -133,6 +133,12 @@ for message in st.session_state.messages:
 
     with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
+        # Show sources if available
+        if message["role"] == "assistant" and message.get("sources"):
+
+            with st.expander("📚 Sources"):
+                for src in set(message["sources"]):
+                    st.markdown(f"- `{src}`")
 
 
 # ----------------------------
@@ -152,30 +158,37 @@ if prompt:
         st.markdown(prompt)
 
     with st.chat_message("assistant", avatar="assets/assistant.png"):
-        with st.spinner("Thinking..."):
-            response, sources = rag.ask(prompt)
-
+        thinking = st.empty()
         placeholder = st.empty()
         full_response = ""
+        sources = None
 
-        for word in response.split():
+        for i in range(3):
+            thinking.markdown(f"🤔 Thinking{'.' * (i + 1)}")
+            time.sleep(0.2)
 
-            full_response += word + " "
-            time.sleep(0.04)
+        first_token = True
 
+        for token, src in rag.ask(prompt, stream = True):
+            sources = src
+
+            if first_token:
+                thinking.empty()
+                first_token = False
+
+            full_response += token
             placeholder.markdown(full_response + "▌")
 
         placeholder.markdown(full_response)
-
-    if sources:
-
-        st.markdown("---")
-        st.markdown("**📚 Sources**")
-
-        for src in set(sources):
-            st.markdown(f"- `{src}`")
+       
+        
+        if sources:
+            with st.expander("📚 Sources"):
+                for src in set(sources):
+                    st.markdown(f"- `{src}`")
 
     st.session_state.messages.append({
         "role": "assistant",
-        "content": full_response
+        "content": full_response,
+        "sources": sources
     })

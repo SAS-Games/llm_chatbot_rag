@@ -99,7 +99,7 @@ class RAGService:
         print("Vector index saved")
 
 
-    def ask(self, question):
+    def ask(self, question, stream=False):
 
         query_embedding = self.embedding_model.embed_query(question)
 
@@ -111,8 +111,8 @@ class RAGService:
 
         for d in docs[:4]:
 
-            src = d["source"]
-            src = os.path.basename(src)
+            src = os.path.basename(d["source"])
+
             if d["page"]:
                 src = f"{src} (page {d['page']})"
 
@@ -127,16 +127,28 @@ class RAGService:
     """
 
         messages = [
-        {
-            "role": "system",
-            "content": "Answer questions using ONLY the provided context. If the answer is not in the context, say you don't know."
-        },
-        {
-            "role": "user",
-            "content": prompt
-        }
+            {
+                "role": "system",
+                "content": (
+                    "You are a helpful assistant answering questions using the provided context. "
+                    "Rules: "
+                    "Use the context to answer questions. "
+                    "If the user explicitly asks for sources, references, links, or where the information came from, include the sources. Otherwise do not mention sources"
+                    "If the answer is not in the context, say it was not found in the knowledge base."
+                )
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
         ]
 
-        response = self.llm.generate_response(messages)
+        # Streaming mode
+        if stream:
+            for token in self.llm.stream_response(messages):
+                yield token, sources
 
-        return response, sources
+        # Normal mode
+        else:
+            response = self.llm.generate_response(messages)
+            return response, sources            
